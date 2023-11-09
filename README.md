@@ -7,7 +7,8 @@ Use this program to create confirmation cover sheets per teacher which includes 
 2. Jupiter attendance export 
 
 ## Directions
-1. Save the RDSC files as `.xlsx` The RDSCs files can keep their original naming 
+1. Create a folder called `Week_of_YYYY_MM_DD` inside of the `data` folder 
+Save the RDSC files as `.xlsx` The RDSCs files can keep their original naming 
 2. Add RDCSs to a folder inside of `data`. Name the folder `Week_of_YYYY_MM_DD`
 3. Download Jupiter Attendance for the week of interest. The columns should be 
     - Data -> Header
