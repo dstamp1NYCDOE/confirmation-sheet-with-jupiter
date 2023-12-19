@@ -30,16 +30,21 @@ def main(data):
     df = pd.concat(df_lst)
     df = df.dropna()
     df['Date'] = pd.to_datetime( df['Date'], format="%m/%d/%y")
+    df['StudentID'] = df['StudentID'].apply(lambda x: int(x))
     
-
 
     ## process attendance
     attendance_df = pd.read_csv(f"data/{week_of}/attendance.csv")
     attendance_df['Date'] = pd.to_datetime( attendance_df['Date'])
     attendance_df['Pd'] = attendance_df['Period'].apply(lambda x: x[1:])
+    attendance_df['StudentID'] = attendance_df['StudentID'].apply(lambda x: int(x))
 
-    rdsc_students = df['StudentID'].unique()
+
+    rdsc_students = list(df['StudentID'].unique())
+
     attendance_df = attendance_df[attendance_df['StudentID'].isin(rdsc_students)]
+
+
     
     temp_lst = []
     for (student, date), attendance_df in attendance_df.groupby(['StudentID','Date']):
@@ -51,8 +56,11 @@ def main(data):
         attendance_dict['Date'] = date 
 
         temp_lst.append(attendance_dict)
+    
+
 
     parsed_attd_df = pd.DataFrame(temp_lst).fillna('')
+
     parsed_cols = ['StudentID', 'Date','1','2','3','4','5','6','7','8','9']
     parsed_attd_df = parsed_attd_df[parsed_cols]
 
@@ -60,7 +68,9 @@ def main(data):
         parsed_attd_df, 
         on=['StudentID','Date'],
         how='left'
-    )
+    ).fillna('')
+
+    print(parsed_attd_df[parsed_attd_df['StudentID']==204659163])
 
     ## build letters 
 
