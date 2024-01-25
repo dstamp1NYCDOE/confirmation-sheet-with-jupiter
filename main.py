@@ -70,7 +70,6 @@ def main(data):
         how='left'
     ).fillna('')
 
-    print(parsed_attd_df[parsed_attd_df['StudentID']==204659163])
 
     ## build letters 
 
