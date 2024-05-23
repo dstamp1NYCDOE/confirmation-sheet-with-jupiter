@@ -36,14 +36,13 @@ def main(data):
     ## process attendance
     attendance_df = pd.read_csv(f"data/{week_of}/attendance.csv")
     attendance_df['Date'] = pd.to_datetime( attendance_df['Date'])
-    attendance_df['Pd'] = attendance_df['Period'].apply(lambda x: x[1:])
+    attendance_df['Pd'] = attendance_df['Period'].str.extract("(\d{1})")
     attendance_df['StudentID'] = attendance_df['StudentID'].apply(lambda x: int(x))
 
 
     rdsc_students = list(df['StudentID'].unique())
 
     attendance_df = attendance_df[attendance_df['StudentID'].isin(rdsc_students)]
-
 
     
     temp_lst = []
@@ -60,6 +59,7 @@ def main(data):
 
 
     parsed_attd_df = pd.DataFrame(temp_lst).fillna('')
+    print(parsed_attd_df)
 
     parsed_cols = ['StudentID', 'Date','1','2','3','4','5','6','7','8','9']
     parsed_attd_df = parsed_attd_df[parsed_cols]
