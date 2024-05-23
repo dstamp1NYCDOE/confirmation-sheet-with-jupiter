@@ -36,7 +36,7 @@ def main(data):
     ## process attendance
     attendance_df = pd.read_csv(f"data/{week_of}/attendance.csv")
     attendance_df['Date'] = pd.to_datetime( attendance_df['Date'])
-    attendance_df['Pd'] = attendance_df['Period'].str.extract("(\d{1})")
+    attendance_df['Pd'] = attendance_df['Period'].str.extract(r"(\d{1,2})")
     attendance_df['StudentID'] = attendance_df['StudentID'].apply(lambda x: int(x))
 
 
