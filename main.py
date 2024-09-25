@@ -59,7 +59,6 @@ def main(data):
 
 
     parsed_attd_df = pd.DataFrame(temp_lst).fillna('')
-    print(parsed_attd_df)
 
     parsed_cols = ['StudentID', 'Date','1','2','3','4','5','6','7','8','9']
     parsed_attd_df = parsed_attd_df[parsed_cols]
